@@ -1,0 +1,8 @@
+Didn't quite understand from a quick read, can look more into it:
+https://www.geospatialexploitationproducts.com/content/gxp-xplorer-platform/gxp-webview/
+
+Not sure if it will interact with CLI and QGIS as well as my current idea:
+https://doc.arcgis.com/en/arcgis-online/manage-data/publish-features.htm#ESRI_SECTION1_49CE0570C3BA4AD8BF2DB28929FF7280
+
+Also QGIS, has a python plugin, and could be automated, not clear if it performs the goals we want tho, maybe in conjuction with the current idea?
+https://docs.qgis.org/2.14/en/docs/user_manual/working_with_ogc/ogc_server_support.html
