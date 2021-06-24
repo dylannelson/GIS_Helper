@@ -29,6 +29,12 @@ button{
 #buttons{
     text-align: right;
 }
+#input_field{
+    display: none;
+    border: solid 1px #5c6a7a;
+    border-radius: 0;
+    padding: 10px;
+}
 
 /* Classes for Buttons */
 .undecided{background-color: #b5b5b5;}

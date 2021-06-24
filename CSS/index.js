@@ -2,6 +2,8 @@ var curr_page = 0;
 var files = data['files'];
 var num_pages = files.length;
 var new_index;
+var edit_hidden = true;
+var edit_history = {};
 
 function populate_page(){
     for (i = 0; i < num_pages; i++) {
@@ -42,7 +44,27 @@ function change_current_page(old_destination, new_destination){
 }
 function change_button_type(new_class){
     document.getElementById(curr_page).className = `progress ${new_class}`
+    if (new_class == "edit"){
+        if (edit_hidden){
+            document.getElementById("input_field").style.display = 'block';
+            edit_hidden = false;
+        }
+        else{
+            document.getElementById("input_field").style.display = 'none';
+            edit_hidden = true;
+        }
+    }
 }
+function submit_form(){
+    var edit_category = document.querySelector('input[name="Edit_Type"]:checked').value;
+    var edit_amount = Number(document.getElementById("Amount").value);
+    console.log(`Edit of type ${edit_category} and of amount ${Number(edit_amount)}`)
+    // var nameValue = document.getElementById("input_field").style.display = 'none';
+    // edit_hidden = true;
+    edit_history[files[curr_page]] = [edit_category, edit_amount]
+}
+
+
 function export_data(){
     var buttons_list = document.getElementById("buttons");
     // Collecting all accepted edits
@@ -57,16 +79,14 @@ function export_data(){
     for (i = 0; i < dec_matches.length; i++) {
         declined_arr.push(files[dec_matches[i].id]);
     }
-    exportToJsonFile({ 'accepted': accepted_arr, 'declined': declined_arr})
+    exportToJsonFile({ 'accepted': accepted_arr, 'declined': declined_arr, 'edits': edit_history})
 }
 
 // found from https://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
 function exportToJsonFile(jsonData) {
     let dataStr = JSON.stringify(jsonData);
     let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-
     let exportFileDefaultName = 'data.json';
-
     let linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', exportFileDefaultName);

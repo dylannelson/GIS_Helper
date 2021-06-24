@@ -10,38 +10,34 @@
 
 <body>
     <h1 id='title'>QGIS Web Helper</h1>
-    <div id='content'><img src="Photos/img1.png" alt="image Failed" width=80%></div>
+    <div id='content'><img src="./Photos/img1.png" alt="image Failed" width=80%></div>
     <p id='location'></p>
     <p id='suggestion'></p><br>
     
     <button class='accept' onclick="change_button_type('accept')">Accept</button> 
     <button class='decline' onclick="change_button_type('decline')">Decline</button> 
-    <button class='edit' onclick="change_button_type('edit')">Edit</button><br><br>
+    <button class='edit' id = 'edit_button' onclick="change_button_type('edit')">Edit</button><br><br>
     
     <div id='input_field'>
-        <input type="radio" id="option1" name="Edit_Type" value="Cap">
+        <input type="radio" id="option1" name="Edit_Type" value="Cap" checked>
             <label for="option1">Cap</label><br>
         <input type="radio" id="option2" name="Edit_Type" value="Red">
             <label for="option2">Reduce</label><br>
-        <input type="radio" id="option3" name="Edit_Type" value="Rem">
+        <input type="radio" id="option3" name="Edit_Type" value="Remove">
             <label for="option3">Remove</label><br><br>
-        Amount: <input type="number" name="" id="">
+        Amount: <input type="number" name="" id="Amount" value ='0'><br><br>
+        <button onclick="submit_form()">Submit</button>
     </div><br><br>
     
-    <button onclick="arrow_button(0)"><<<</button> 
-    <button onclick="arrow_button(1)">>>></button>
+    <button onclick="arrow_button(0)">&lt;&lt;&lt;</button> 
+    <button onclick="arrow_button(1)">&gt;&gt;&gt;</button>
     <button class='right' onclick="export_data()">Export Data</button>
 
     <br><br><hr><br>
     <div id='buttons'></div>
     
     <br><br><br>
-    <p>1</p>
-    <img src="/Photos/img1.png" alt="image Failed" width=80%>
-    <p>2</p>
-    <img src="./Photos/img1.png" alt="image Failed" width=80%>
-    <p>3</p>
-    <img src="Photos/img1.png" alt="image Failed" width=80%>
+    
     <script>
         populate_page()
         change_current_page(0,0)
