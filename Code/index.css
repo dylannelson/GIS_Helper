@@ -1,0 +1,46 @@
+#title {
+  text-align: center;
+}
+#content{
+    /* filler */
+    text-align: center;
+}
+#map{
+	height: 500px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+.right{
+    float: right;
+}
+button{
+    font-weight: bold;
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: #5c6a7a;
+}
+#buttons{
+    text-align: right;
+}
+#input_field{
+    display: none;
+    border: solid 1px #5c6a7a;
+    border-radius: 0;
+    padding: 10px;
+}
+
+/* Classes for Buttons */
+.undecided{background-color: #b5b5b5;}
+.decline{background-color: #f8564a;}
+.edit{background-color: #4a69aa;}
+.accept{background-color: #4CAF50;}
+.progress{
+    padding: 12px 12px;
+    margin-left: 8px;
+}

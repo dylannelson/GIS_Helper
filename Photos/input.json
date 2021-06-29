@@ -1,3 +1,0 @@
-data = {files:['img1.png','img2.png','img3.png','img4.png','img5.png','img6.png','img7.png'], 
-	locations:['Earth','Atlantic Ocean','Algeria','USA','Algeria 2','Kazakstan','Angola'],
-	suggestions:['Cap Region @ 1mm','Reduce Region by 2%','Remove 3 highlighted regions','Cap Region @ 4mm','Remove 5 highlighted regions','Reduce Region by 6%','Cap Region @ 7mm']}

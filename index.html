@@ -2,21 +2,29 @@
 <html>
 
 <head>
+    <!-- Original Additions -->
     <title> QGIS Web Helper </title>
-    <link rel="stylesheet" type="text/css" href="CSS/index.css" />
-    <script type="text/javascript" src="Photos/input.json"></script>
-    <script src="CSS/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="Code/index.css" />
+    <script type="text/javascript" src="Code/demo1.json"></script>
+    <script src="Code/index.js"></script>
+    <!-- Added Stuff for maps -->
+    <meta charset="utf-8">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    
 </head>
 
 <body>
     <h1 id='title'>QGIS Web Helper</h1>
-    <div id='content'><img src="./Photos/img1.png" alt="image Failed" width=80%></div>
+    <div id='map'></div>
     <p id='location'></p>
     <p id='suggestion'></p><br>
     
     <button class='accept' onclick="change_button_type('accept')">Accept</button> 
     <button class='decline' onclick="change_button_type('decline')">Decline</button> 
-    <button class='edit' id = 'edit_button' onclick="change_button_type('edit')">Edit</button><br><br>
+    <button class='edit' id = 'edit_button' onclick="change_button_type('edit')">Edit</button>
+    <button onclick="api_key()" class = 'right'>Insert API Key</button>
+    <br><br>
     
     <div id='input_field'>
         <input type="radio" id="option1" name="Edit_Type" value="Cap" checked>
@@ -27,7 +35,7 @@
             <label for="option3">Remove</label><br><br>
         Amount: <input type="number" name="" id="Amount" value ='0'><br><br>
         <button onclick="submit_form()">Submit</button>
-    </div><br><br>
+    </div>
     
     <button onclick="arrow_button(0)">&lt;&lt;&lt;</button> 
     <button onclick="arrow_button(1)">&gt;&gt;&gt;</button>
@@ -40,7 +48,6 @@
     
     <script>
         populate_page()
-        change_current_page(0,0)
     </script>
 </body>
 
