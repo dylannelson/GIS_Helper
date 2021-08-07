@@ -2,50 +2,96 @@
 <html>
 
 <head>
-    <!-- Original Additions -->
     <title> QGIS Web Helper </title>
-    <link rel="stylesheet" type="text/css" href="Code/index.css" />
-    <script type="text/javascript" src="Code/demo1.json"></script>
-    <script src="Code/index.js"></script>
-    <!-- Added Stuff for maps -->
+    <!-- Map Imports -->
     <meta charset="utf-8">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
-    
+    <link rel="stylesheet" type="text/css" href="Code/double_map.css" />
+    <!-- Left Map -->
+    <script type="text/javascript" src="Code/Final_Stretch/left_daily.json"></script>
+    <script type="text/javascript" src="Code/Final_Stretch/cluster_outlines.json"></script>
+    <!-- Right map data -->
+    <script type="text/javascript" src="Code/Final_Stretch/final_hail.json"></script>
+    <script type="text/javascript" src="Code/Final_Stretch/final_corr.json"></script>
+    <script type="text/javascript" src="Code/Final_Stretch/final_bias.json"></script>
+    <!-- This Javascript always has to load last -->
+    <script src="Code/double_map.js"></script>
 </head>
 
 <body>
     <h1 id='title'>QGIS Web Helper</h1>
-    <div id='map'></div>
-    <p id='location'></p>
-    <p id='suggestion'></p><br>
     
-    <button class='accept' onclick="change_button_type('accept')">Accept</button> 
-    <button class='decline' onclick="change_button_type('decline')">Decline</button> 
-    <button class='edit' id = 'edit_button' onclick="change_button_type('edit')">Edit</button>
-    <button onclick="api_key()" class = 'right'>Insert API Key</button>
-    <br><br>
-    
-    <div id='input_field'>
-        <input type="radio" id="option1" name="Edit_Type" value="Cap" checked>
-            <label for="option1">Cap</label><br>
-        <input type="radio" id="option2" name="Edit_Type" value="Red">
-            <label for="option2">Reduce</label><br>
-        <input type="radio" id="option3" name="Edit_Type" value="Remove">
-            <label for="option3">Remove</label><br><br>
-        Amount: <input type="number" name="" id="Amount" value ='0'><br><br>
-        <button onclick="submit_form()">Submit</button>
+    <div id ='maps_container'>
+        <div id='left_map' ></div>
+        <div id="divider"></div>
+        <div id='right_map'></div>
     </div>
-    
-    <button onclick="arrow_button(0)">&lt;&lt;&lt;</button> 
-    <button onclick="arrow_button(1)">&gt;&gt;&gt;</button>
-    <button class='right' onclick="export_data()">Export Data</button>
 
-    <br><br><hr><br>
-    <div id='buttons'></div>
-    
+    <div id = "controls">
+        <button onclick="toggle_hour(0)" class='hour_button' id='Hour_0'>0</button>
+        <button onclick="toggle_hour(1)" class='hour_button' id='Hour_1'>1</button>
+        <button onclick="toggle_hour(2)" class='hour_button' id='Hour_2'>2</button>
+        <button onclick="toggle_hour(3)" class='hour_button' id='Hour_3'>3</button>
+        <button onclick="toggle_hour(4)" class='hour_button' id='Hour_4'>4</button>
+        <button onclick="toggle_hour(5)" class='hour_button' id='Hour_5'>5</button>
+        <button onclick="toggle_hour(6)" class='hour_button' id='Hour_6'>6</button>
+        <button onclick="toggle_hour(7)" class='hour_button' id='Hour_7'>7</button>
+        <button onclick="toggle_hour(8)" class='hour_button' id='Hour_8'>8</button>
+        <button onclick="toggle_hour(9)" class='hour_button' id='Hour_9'>9</button>
+        <button onclick="toggle_hour(10)" class='hour_button' id='Hour_10'>10</button>
+        <button onclick="toggle_hour(11)" class='hour_button' id='Hour_11'>11</button>
+        <button onclick="toggle_hour(12)" class='hour_button' id='Hour_12'>12</button>
+        <button onclick="toggle_hour(13)" class='hour_button' id='Hour_13'>13</button>
+        <button onclick="toggle_hour(14)" class='hour_button' id='Hour_14'>14</button>
+        <button onclick="toggle_hour(15)" class='hour_button' id='Hour_15'>15</button>
+        <button onclick="toggle_hour(16)" class='hour_button' id='Hour_16'>16</button>
+        <button onclick="toggle_hour(17)" class='hour_button' id='Hour_17'>17</button>
+        <button onclick="toggle_hour(18)" class='hour_button' id='Hour_18'>18</button>
+        <button onclick="toggle_hour(19)" class='hour_button' id='Hour_19'>19</button>
+        <button onclick="toggle_hour(20)" class='hour_button' id='Hour_20'>20</button>
+        <button onclick="toggle_hour(21)" class='hour_button' id='Hour_21'>21</button>
+        <button onclick="toggle_hour(22)" class='hour_button' id='Hour_22'>22</button>
+        <button onclick="toggle_hour(23)" class='hour_button' id='Hour_23'>23</button>
+        <br><br>
+
+
+
+        <button class='accept' onclick="change_button_type('accept')">Accept</button>
+        <button class='decline' onclick="change_button_type('decline')">Decline</button>
+        <button class='edit' onclick="change_button_type('edit')">Edit</button>
+        <button class= 'right non_selected_data' id ='bias_button' onclick="change_data_source(2)">Bias Data</button>
+        <button class= 'right non_selected_data' id ='corr_button' onclick="change_data_source(1)">Corr Data</button>
+        <button class= 'right non_selected_data' id ='hail_button' onclick="change_data_source(0)">Hail Data</button>
+        
+
+        <div id='input_field'>
+            <input type="radio" id="option1" name="Edit_Type" value="Cap" checked>
+            <label for="option1">Cap</label><br>
+            <input type="radio" id="option2" name="Edit_Type" value="Red">
+            <label for="option2">Reduce</label><br>
+            <input type="radio" id="option3" name="Edit_Type" value="Remove">
+            <label for="option3">Remove</label><br><br>
+            Amount: <input type="number" name="" id="Amount" value='0'><br><br>
+            <button onclick="submit_form()">Submit</button>
+        </div><br><br>
+
+        <button onclick="arrow_button(0)">&lt;&lt;&lt;</button>
+        <button onclick="arrow_button(1)">&gt;&gt;&gt;</button>
+        <button class='right' onclick="export_data()">Export Data</button>
+        <button onclick="api_key()" class='right'>Insert API Key</button>
+        <hr><br>
+        <div id='buttons'></div>
+
+        <!-- IF REMOIVING THE DEMO BUTTONS, DELETE THE EVEN LISTENER RELATED TO THEM -->
+        <!-- <br><b>Demo Buttons</b>
+        <hr>
+        <button id='fly'>Reset Map</button>
+        <button onclick='alert(`Map Center: ${leftMap.getCenter()} \nMap Zoom: ${leftMap.getZoom()} `)'>Get Center & Zoom</button> -->
+    </div>
+
     <br><br><br>
-    
+
     <script>
         populate_page()
     </script>

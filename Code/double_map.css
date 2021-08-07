@@ -1,0 +1,80 @@
+#title {
+  text-align: center;
+}
+body {
+    margin: 0px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* background-color: #375d8f; */
+    background-color: #344357;
+    color: white;
+}
+h1{
+    color: white;
+    font-weight: 1000;
+}
+#content{
+    /* filler */
+    text-align: center;
+}
+
+#controls{
+    padding-top: 600px;
+}
+#left_map, #right_map {
+      position: absolute;
+      top: 75px;
+      bottom: 0px;
+      width: 50%;
+      height:585px;                 /* height of the map */
+      border: 1px solid black;
+    }
+#right_map {
+    right: 0px;
+    float: right;
+}
+#divider {
+    background-color: gray;
+    width: 8px;
+}
+.right{
+    float: right;
+}
+button{
+    font-weight: bold;
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: #5c6a7a;
+}
+#buttons{
+    text-align: right;
+}
+#input_field{
+    display: none;
+    border: solid 1px #5c6a7a;
+    border-radius: 0;
+    padding: 10px;
+}
+
+/* Classes for Buttons */
+.undecided{background-color: #7c7c7c;}
+.decline{background-color: #da4a3f;}
+.edit{background-color: #3865c5;}
+.accept{background-color: #349237;}
+.progress{
+    padding: 12px 12px;
+    margin-left: 8px;
+}
+
+.hour_button{
+    padding: 7px;
+    margin: 0px;
+    float: right;
+}
+.hour_off{
+    background-color: red;
+}
